@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class Pusher : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Vector3 startPosition;
+
+    [SerializeField] private float amplitude;
+    [SerializeField] private float speed;
+    
+    private void Start()
     {
-        
+        startPosition = transform.localPosition;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        float z = amplitude * Mathf.Sin(Time.time * speed);
         
+        // tween is better
+        transform.localPosition = startPosition + new Vector3(0, 0, z);
     }
 }
