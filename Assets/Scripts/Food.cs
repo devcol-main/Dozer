@@ -1,16 +1,37 @@
 using UnityEngine;
+//using System;
 
 public class Food : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int foodValue;
+    [SerializeField] private GameObject[] destroyParticle;
+    [SerializeField] private GameObject collisionParticle; 
+    
+    //
+    public int FoodValue => foodValue;
+    
+    //
+    private bool collisionEffectOnce = true;
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision) 
     {
+        if (!collisionEffectOnce) return;
         
+        collisionEffectOnce = false;
+        
+        Instantiate(collisionParticle, transform.position, Quaternion.identity);
+            
+    }
+    
+    
+    public void Destroy()
+    {
+        foreach (var particle in destroyParticle)
+        {
+            Instantiate(particle, transform.position, Quaternion.identity);    
+        }
+        
+        
+        Destroy(gameObject);
     }
 }
