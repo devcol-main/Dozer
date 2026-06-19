@@ -18,8 +18,6 @@ public class Shooter : MonoBehaviour
 
     private const float baseWidth = 5;
     
-
-    
     private GameObject SelectRandomFood()
     {
         GameObject prefab = null;
@@ -37,18 +35,13 @@ public class Shooter : MonoBehaviour
             screenPosition = Touchscreen.current.primaryTouch.position.ReadValue();
         }
         
-        
-        
         float x = baseWidth *
                   (screenPosition.x / Screen.width) - (baseWidth / 2);
-        
         
         Debug.Log("X: " + x +  " | location.x: " + screenPosition.x );
         
         return transform.position + new Vector3(x, 0, 0);
     }
-    
-    
     
     public void OnShoot()
     {
